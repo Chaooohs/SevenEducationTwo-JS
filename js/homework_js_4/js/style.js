@@ -64,8 +64,8 @@ function arr(x) {
     x.push("x");
   }
 }
-arr(x)
-document.write(`<h3> ${x.join(' ')} </h3>`);
+arr(x);
+document.write(`<h3> ${x.join(" ")} </h3>`);
 
 document.write("<hr>");
 
@@ -130,9 +130,9 @@ document.write("<hr>");
 
 //=========================================================================
 
-let a = parseInt(prompt('Калькулятор - ' + "Перше число:"));
-let c = prompt('Калькулятор - ' + "Арефметична операція: +, -, *, /");
-let b = parseInt(prompt('Калькулятор - ' + "Друге число:"));
+let a = parseInt(prompt("Калькулятор - " + "Перше число:"));
+let c = prompt("Калькулятор - " + "Арефметична операція: +, -, *, /");
+let b = parseInt(prompt("Калькулятор - " + "Друге число:"));
 
 function summ(a, b) {
   if (Number.isNaN(a && b)) {
