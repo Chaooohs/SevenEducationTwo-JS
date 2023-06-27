@@ -4,22 +4,39 @@
 
 //==========================================================================
 
-// let num = prompt("Ведiть число вiд 1 до 7:");
+let num = prompt("Ведiть число вiд 1 до 7:");
 
-// function day(dayWeek) {
-//   return document.write(`<h3> ${dayWeek} </h3>`);
-// }
+function day(dayWeek) {
+  return document.write(`<h3> ${dayWeek} </h3>`);
+}
 
-// switch (num) {
-//   case "1": day('Понеділок'); break;
-//   case "2": day('Вівторок'); break;
-//   case "3": day('Середа'); break;
-//   case "4": day('Четвер'); break;
-//   case "5": day("П'ятниця"); break;
-//   case "6": day('Субота'); break;
-//   case "7": day('Неділя'); break;
-//   default:  day("Невiрно");
-// }
+switch (num) {
+  case "1":
+    day("Понеділок");
+    break;
+  case "2":
+    day("Вівторок");
+    break;
+  case "3":
+    day("Середа");
+    break;
+  case "4":
+    day("Четвер");
+    break;
+  case "5":
+    day("П'ятниця");
+    break;
+  case "6":
+    day("Субота");
+    break;
+  case "7":
+    day("Неділя");
+    break;
+  default:
+    day("Невiрно");
+}
+
+document.write("<hr>");
 
 //==========================================================================
 
@@ -32,21 +49,25 @@ let newText = text.replace("var_text_hello", "VarTextHello");
 
 document.write(`<h3>${newText}</h3>`);
 
+document.write("<hr>");
+
 //==========================================================================
 
 // 3. Створіть функцію, яка заповнюватиме масив 10-ма іксами за допомогою циклу.
 
 //==========================================================================
 
-// const x = [];
+const x = [];
 
-// function arr(x) {
-//   for (let i = 0; i < 10; i++) {
-//     x.push("x");
-//   }
-// }
+function arr(x) {
+  for (let i = 0; i < 10; i++) {
+    x.push("x");
+  }
+}
+arr(x)
+document.write(`<h3> ${x.join(' ')} </h3>`);
 
-// arr(x);
+document.write("<hr>");
 
 //==========================================================================
 
@@ -54,31 +75,32 @@ document.write(`<h3>${newText}</h3>`);
 
 //==========================================================================
 
-// let array = new Array(50);
-// let i = array.length;
+let array = new Array(50);
+let i = array.length;
 
-// function fill() {
-//   if (i >= 0) {
-//     array[i] = i;
-//     return fill(array, --i);
-//   }
-// }
-// fill();
-// document.write(array)
+function fill() {
+  if (i >= 0) {
+    array[i] = i;
+    return fill(array, --i);
+  }
+}
+fill();
 
-// i = 0;
-// function pair() {
-//   i++;
-//   if (i > 50) {
-//     return;
-//   } else if (array[i] % 2 === 0) {
-//     document.write(`<div style="background-color:red;color:white"> ${array[i]} </div>`);
-//   } else {
-//     document.write(`<p> ${array[i]} </p>`);
-//   }
-//   pair();
-// }
-// pair();
+i = 0;
+function pair() {
+  i++;
+  if (i > 50) {
+    return;
+  } else if (array[i] % 2 === 0) {
+    document.write(`<div"> ${array[i]} </div>`);
+  } else {
+    document.write(`<p> ${array[i]} </p>`);
+  }
+  pair();
+}
+pair();
+
+document.write("<hr>");
 
 //=========================================================================
 
@@ -86,19 +108,21 @@ document.write(`<h3>${newText}</h3>`);
 
 //=========================================================================
 
-// let a = 8;
-// let ggg = b;
+let asd = +prompt("Ведiть число:");
+let ggg = asd;
 
-// if (b > 0) {
-//    ggg = function () {
-//     document.write('один')
-//   }
-// } else {
-//   ggg = function () {
-//     document.write('два')
-//   }
-// }
-// ggg()
+if (asd > 0) {
+  ggg = function () {
+    document.write(`<h3> один </h3>`);
+  };
+} else {
+  ggg = function () {
+    document.write(`<h3> два </h3>`);
+  };
+}
+ggg();
+
+document.write("<hr>");
 
 //=========================================================================
 
@@ -106,47 +130,71 @@ document.write(`<h3>${newText}</h3>`);
 
 //=========================================================================
 
-let a = parseInt(prompt("Перше число:"));
-let c = prompt("Арефметична операція: +, -, *, /");
-let b = parseInt(prompt("Друге число:"));
-
+let a = parseInt(prompt('Калькулятор -' + "Перше число:"));
+let c = prompt('Калькулятор -' + "Арефметична операція: +, -, *, /");
+let b = parseInt(prompt('Калькулятор -' + "Друге число:"));
 
 function summ(a, b) {
-  return a + b;
+  if (Number.isNaN(a && b)) {
+    return error();
+  } else {
+    return a + b;
+  }
 }
 
 function diff(a, b) {
-  return a - b;
+  if (Number.isNaN(a && b)) {
+    return error();
+  } else {
+    return a - b;
+  }
 }
 
 function mult(a, b) {
-  return a * b;
+  if (Number.isNaN(a && b)) {
+    return error();
+  } else {
+    return a * b;
+  }
 }
 
 function dev(a, b) {
-  if (b === 0) {
+  if (Number.isNaN(a && b)) {
+    return error();
+  } else if (b === 0) {
     return error();
   }
   return a / b;
 }
 
-function error(){
+function error() {
   let a = "Помилка";
   return a;
 }
 
 function res(callback) {
-  let result = callback(a, b,);
+  let result = callback(a, b);
   document.write(`<h3> ${result} </h3>`);
 }
 
 switch (c) {
-  case "+": res(summ); break;
-  case "-": res(diff); break;
-  case "*": res(mult); break;
-  case "/": res(dev); break;
-  default:  res(error);
+  case "+":
+    res(summ);
+    break;
+  case "-":
+    res(diff);
+    break;
+  case "*":
+    res(mult);
+    break;
+  case "/":
+    res(dev);
+    break;
+  default:
+    res(error);
 }
+
+document.write("<hr>");
 
 //===============================================================================
 
@@ -162,10 +210,12 @@ b = (function () {
   return 4;
 })();
 
-function ggg(a, b) {
+function bbb(a, b) {
   document.write(`<h3>${a + b}</h3>`);
 }
-ggg(a, b);
+bbb(a, b);
+
+document.write("<hr>");
 
 //===============================================================================
 
@@ -180,6 +230,8 @@ function sum() {
   sum();
 }
 sum();
-console.log(i);
+document.write(`<h3>${i}</h3>`);
+
+document.write("<hr>");
 
 //===============================================================================
