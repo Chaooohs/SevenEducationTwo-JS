@@ -4,15 +4,15 @@
 
 //=====================================================================
 
-// const salary = {
-//   Коля: "1000",
-//   Вася: "500",
-//   Петя: "200",
-// };
+const salary = {
+  Коля: "1000",
+  Вася: "500",
+  Петя: "200",
+};
 
-// document.write(`<h3>Коля: ${salary.Коля} </h3>`);
-// document.write(`<h3>Петя: ${salary.Петя} </h3>`);
-// document.write("<hr>");
+document.write(`<h3>Коля: ${salary.Коля} </h3>`);
+document.write(`<h3>Петя: ${salary.Петя} </h3>`);
+document.write("<hr>");
 
 //=====================================================================
 
@@ -20,12 +20,12 @@
 
 //=====================================================================
 
-// const tbody = document.getElementById("tbody");
-// let table = "";
-// for (let item of Object.values(data.exchangeRate)) {
-//   table += `<tr><td>${data.exchangeRate.length}</td><td>${item.currency}</td><td>${item.saleRateNB.toFixed(2)}</td><td>${item.purchaseRateNB.toFixed(2)}</td></tr>`;
-// }
-// tbody.innerHTML = table;
+const tbody = document.getElementById("tbody");
+let table = "";
+for (let item of Object.values(data.exchangeRate)) {
+  table += `<tr><td>${data.exchangeRate.length}</td><td>${item.currency}</td><td>${item.saleRateNB.toFixed(2)}</td><td>${item.purchaseRateNB.toFixed(2)}</td></tr>`;
+}
+tbody.innerHTML = table;
 
 //=====================================================================
 
@@ -54,14 +54,61 @@ const cryptoWallet = {
     rate: 0.1044,
   },
   page: function (coinName) {
-    document.write(`<h3> Доброго дня, ${this.userName} ! На вашому балансі ${this[coinName].name} ${this[coinName].logo} залишилося ${this[coinName].coin} монет, якщо ви сьогодні продасте їх те, отримаєте ${(this[coinName].coin * this[coinName].rate * 37).toFixed(2)}грн. </h3>`)
+    document.write(`<h3> Доброго дня, ${this.userName} ! На вашому балансі ${this[coinName].name} ${this[coinName].logo} залишилося ${this[coinName].coin} монет, якщо ви сьогодні продасте їх то, отримаєте ${(this[coinName].coin * this[coinName].rate * 37).toFixed(2)}грн. </h3>`)
   }
 }
 
 // cryptoWallet.page(prompt('Bыберiть монету', 'Bitcoin, Ethereum, Stellar'));
 
-//=====================================================================
+document.write('<hr>');
 
+//======================================================================================
 
+// 4. Даний рядок типу 'var_text_hello'. Зробіть із нього текст 'VarTextHello'.
 
-//=====================================================================
+//======================================================================================
+
+const text = 'var_text_hello';
+const newText = text.replace('var_text_hello', 'VarTextHello');
+
+document.write(`<h3>${newText}</h3>`);
+
+document.write('<hr>');
+
+//======================================================================================
+
+//5. Напишіть функцію isEmpty(obj), яка повертає true, якщо об'єкт не має властивостей, інакше false.
+
+//======================================================================================
+
+const obj = {}
+
+function isEmpty(obj) {
+  for (let key in obj) {
+    return false;
+  }
+  return true;
+}
+
+isEmpty(obj);
+
+//======================================================================================
+
+// 6. Зробіть функцію, яка рахує та виводить кількість своїх викликів.
+
+//======================================================================================
+
+call = 0;
+
+function callNumber() {
+  call++
+  if (call === 500) return;
+  callNumber();
+}
+callNumber();
+
+document.write(`<h3>${call}</h3>`);
+
+document.write('<hr>');
+
+//======================================================================================
