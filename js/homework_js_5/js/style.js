@@ -21,9 +21,10 @@ document.write("<hr>");
 //=====================================================================
 
 const tbody = document.getElementById("tbody");
+
 let table = "";
-for (let item of Object.values(data.exchangeRate)) {
-  table += `<tr><td>${data.exchangeRate.length}</td><td>${item.currency}</td><td>${item.saleRateNB.toFixed(2)}</td><td>${item.purchaseRateNB.toFixed(2)}</td></tr>`;
+for (let item in Object.values(data.exchangeRate)) {
+  table += `<tr><td>${parseInt(item) + 1}</td><td>${data.exchangeRate[item].currency}</td><td>${data.exchangeRate[item].saleRateNB.toFixed(2)}</td><td>${data.exchangeRate[item].purchaseRateNB.toFixed(2)}</td></tr>`;
 }
 tbody.innerHTML = table;
 
@@ -58,7 +59,7 @@ const cryptoWallet = {
   }
 }
 
-// cryptoWallet.page(prompt('Bыберiть монету', 'Bitcoin, Ethereum, Stellar'));
+cryptoWallet.page(prompt('Bыберiть монету', 'Bitcoin, Ethereum, Stellar'));
 
 document.write('<hr>');
 
