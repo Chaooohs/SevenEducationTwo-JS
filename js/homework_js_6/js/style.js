@@ -82,9 +82,8 @@ console.log(phone1.getNumber(phone1.receiveCall("Petro: ")));
 const starWar = data.results;
 
 starWar.forEach((item, index) => {
-  const table = `<tr><td>${index + 1}</td><td>${item.name}</td><td>${item.height}</td><td>${
-    item.mass
-  }</td><td><a href="${item.url}">site</a></td></tr>`;
+  const table = `<tr><td>${index + 1}</td><td>${item.name}</td><td>${item.height}</td><td>${item.mass
+    }</td><td><a href="${item.url}">site</a></td></tr>`;
   add(table);
 });
 
@@ -211,4 +210,83 @@ console.log(sportCar.sportCarInfo);
 // print(carOne.turnRight("Поворот праворуч"));
 // print(carOne.turnLeft("Поворот ліворуч"));
 
-//========================================
+//========================================================================================
+
+class Animal {
+  constructor(property) {
+    this.food = property.food;
+    this.location = property.location;
+  }
+  makeNoise() {
+    console.log("Така тварина...");
+  }
+  eat() {
+    console.log("Така тварина...");
+  }
+  sleep() {
+    console.log("Така тварина спить");
+  }
+}
+
+class Dog extends Animal {
+  constructor(property) {
+    super(property);
+    this.animalName = property.animalName;
+    this.food = property.food;
+    this.location = property.location;
+  }
+  makeNoise() {
+    console.log("Така тварина гавкаэ");
+  }
+  eat() {
+    console.log("Така тварина їсть");
+  }
+}
+
+class Cat extends Animal {
+  constructor(property) {
+    super(property);
+    this.animalName = property.animalName;
+    this.food = property.food;
+    this.location = property.location;
+  }
+  makeNoise() {
+    console.log("Така тварина не їсть");
+  }
+  eat() { }
+}
+
+class Horse extends Animal {
+  constructor(property) {
+    super(property);
+    this.animalName = property.animalName;
+    this.food = property.food;
+    this.location = property.location;
+  }
+  makeNoise() {
+    console.log("Така тварина рже");
+  }
+  eat() {
+    console.log("Така тварина не їсть стоячи");
+  }
+}
+
+class Vet  {
+  constructor() {}
+  treatAnimal(animal, key) {
+    console.log(`
+    (${key})
+    animalName: ${animal.animalName} 
+    animalFood: ${animal.food}
+    animalLocation: ${animal.location}`);
+  }
+  main(...animals) {
+    animals.forEach((animal, key) => {this.treatAnimal(animal, key + 1)});
+  }
+}
+
+const dog = new Dog({ animalName: "dog", food: "meat", location: "lawn" });
+const cat = new Cat({ animalName: "cat", food: "fish", location: "house" });
+const horse = new Horse({ animalName: "horse", food: "hay", location: "field" });
+
+Vet.prototype.main(dog, cat, horse);
