@@ -276,8 +276,8 @@ class Vet  {
   treatAnimal(animal, key) {
     console.log(`
     (${key})
-    animalName: ${animal.animalName} 
-    animalFood: ${animal.food}
+    animalName:     ${animal.animalName} 
+    animalFood:     ${animal.food}
     animalLocation: ${animal.location}`);
   }
   main(...animals) {
