@@ -1,0 +1,29 @@
+
+body {
+  margin: 0;
+}
+
+.circle-background {
+  width: 50%;
+  background-color: #1f1f1f;
+  margin: 0 auto;
+  padding: 10px;
+  cursor: pointer;
+  
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(30px, 1fr));
+  gap: 8px;
+}
+
+.circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50px;
+  background-color: #fff;
+  color: #000;
+  
+  justify-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
