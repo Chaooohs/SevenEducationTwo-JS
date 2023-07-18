@@ -32,3 +32,33 @@ function myClick() {
 //=====================================================================================
 // 3.
 
+divs = document.getElementsByTagName("div");
+
+const arr = [...divs];
+
+arr.forEach((item) => {
+  item.style.backgroundColor = `rgb(${randomColorCircle(255)},${randomColorCircle(255)},${randomColorCircle(255)})`;
+});
+
+function randomColorCircle(max) {
+  return Math.floor(Math.random() * (max + 1));
+}
+
+//=========================================================================================
+// 4.
+
+document.querySelector("#taskFourButton").addEventListener('click', clickFour);
+function clickFour() {
+  const textFour = document.querySelector("#inputFour").value;
+  const div = document.createElement("div");
+  div.innerHTML = textFour;
+  document.querySelector(".task_four").append(div);
+
+  const res = document.querySelector("#inputFour")
+  res.value = "";
+}
+
+//=========================================================================================
+// 5.
+
+
