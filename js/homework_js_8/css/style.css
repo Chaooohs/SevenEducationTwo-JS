@@ -73,3 +73,7 @@ p {
   gap: 4px;
   margin: 0;
 }
+
+.element {
+  color: red;
+}
