@@ -1,7 +1,16 @@
+//=================================================================================================
+// 1.
+
+const $ = (el) => document.querySelector(el);
+
+const margin = $('.mg')
+console.log(`margin: ${getComputedStyle(margin).margin}`)
+
+
 //=============================================================
 // 3.
 
-const $ = (el) => document.querySelector(el);
+
 
 const input = document.createElement("input");
 const button = document.createElement("input");
@@ -26,6 +35,4 @@ button.onclick = () => {
   }
 };
 
-//=================================================================================================
-// 1.
 
