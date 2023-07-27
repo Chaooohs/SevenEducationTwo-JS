@@ -52,6 +52,7 @@ key(".keys").addEventListener("click", function (e) {
       break;
     case "=":
       calculate(parseFloat(calc.numOne), parseFloat(calc.numTwo), calc.sign)
+      show(calc.result)
       break;
   }
 });
@@ -69,8 +70,6 @@ const memoryDel = () => {
 
 const memoryShow = () => key(".display > input").value = calc.memory;
 
-const spanShow = (m) => (key(".display > span").innerText = m);
-
 function del() {
   calc.sign = ""
   calc.numOne = ""
@@ -84,23 +83,17 @@ function del() {
 function calculate(a, b, c) {
 
   switch (c) {
-    case "+":
-      calc.result = (a + b)
-      show(a + b)
+    case "+": calc.result = (a + b)
       return
-    case "-":
-      calc.result = (a - b)
-      show(a - b)
+    case "-": calc.result = (a - b)
       return
-    case "*":
-      calc.result = (a * b)
-      show(a * b)
+    case "*": calc.result = (a * b)
       return
-    case "/": (b !== 0) ? show(a / b) : ` ${del()} ${key(".display > span").innerText = 'деление на ноль невозможно'}`
-    calc.result = (a / b)
-    return
+    case "/": (b !== 0) ? calc.result = (a / b) : ` ${del()} ${key(".display > span").innerText = 'деление на ноль невозможно'}`
+      return
   }
 }
 
 // output ____
+const spanShow = (m) => (key(".display > span").innerText = m);
 const show = (view) => (key(".display > input").value = view);
