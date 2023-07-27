@@ -19,6 +19,55 @@ const calc = {
 
 const key = (selector) => document.querySelector(selector);
 
+// operations ___________________________________________
+
+function calculate(a, b, c) {
+
+  switch (c) {
+    case "+": calc.result = (a + b)
+      return
+    case "-": calc.result = (a - b)
+      return
+    case "*": calc.result = (a * b)
+      return
+    case "/": (b !== 0) ? calc.result = (a / b) : ` ${del()} ${key(".display > span").innerText = 'деление на ноль невозможно'}`
+      return
+  }
+}
+
+
+// memory ____________________________________________________
+
+const memoryRec = () => {
+  calc.memory = +key(".display > input").value;
+  key(".display > input").value = "";
+};
+
+const memoryDel = () => {
+  calc.memory = "";
+  key(".display > input").value = "";
+};
+
+const memoryShow = () => key(".display > input").value = calc.memory;
+
+function del() {
+  calc.sign = ""
+  calc.numOne = ""
+  calc.numTwo = ""
+  calc.result = ""
+  show("");
+  spanShow("");
+}
+
+
+// output ___________________________________________________________________________
+
+const spanShow = (m) => (key(".display > span").innerText = m);
+const show = (view) => (key(".display > input").value = view);
+
+
+// click ___________________________________________________________________________
+
 key(".keys").addEventListener("click", function (e) {
 
   if (/\d/.test(e.target.value) && calc.sign === "") {
@@ -26,7 +75,7 @@ key(".keys").addEventListener("click", function (e) {
     show(calc.numOne);
   }
   else if (/[+-/*]/.test(e.target.value)) {
-    calc.sign += e.target.value;
+    calc.sign = e.target.value;
   }
   else if (/\d/.test(e.target.value)) {
     calc.numTwo += e.target.value;
@@ -51,49 +100,8 @@ key(".keys").addEventListener("click", function (e) {
       del()
       break;
     case "=":
-      calculate(parseFloat(calc.numOne), parseFloat(calc.numTwo), calc.sign)
+      calculate(+calc.numOne, +calc.numTwo, calc.sign)
       show(calc.result)
       break;
   }
 });
-
-// memory _____________________________________
-const memoryRec = () => {
-  calc.memory = +key(".display > input").value;
-  key(".display > input").value = "";
-};
-
-const memoryDel = () => {
-  calc.memory = "";
-  key(".display > input").value = "";
-};
-
-const memoryShow = () => key(".display > input").value = calc.memory;
-
-function del() {
-  calc.sign = ""
-  calc.numOne = ""
-  calc.numTwo = ""
-  calc.result = ""
-  show("");
-  spanShow("");
-}
-
-// operations ___________________________________________
-function calculate(a, b, c) {
-
-  switch (c) {
-    case "+": calc.result = (a + b)
-      return
-    case "-": calc.result = (a - b)
-      return
-    case "*": calc.result = (a * b)
-      return
-    case "/": (b !== 0) ? calc.result = (a / b) : ` ${del()} ${key(".display > span").innerText = 'деление на ноль невозможно'}`
-      return
-  }
-}
-
-// output ____
-const spanShow = (m) => (key(".display > span").innerText = m);
-const show = (view) => (key(".display > input").value = view);
