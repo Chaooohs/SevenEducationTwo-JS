@@ -58,7 +58,7 @@ key(".keys").addEventListener("click", function (e) {
 
 // memory _____________________________________
 const memoryRec = () => {
-  calc.memory = key(".display > input").value;
+  calc.memory = +key(".display > input").value;
   key(".display > input").value = "";
 };
 
@@ -84,14 +84,21 @@ function del() {
 function calculate(a, b, c) {
 
   switch (c) {
-    case "+": show(a + b)
+    case "+":
+      calc.result = (a + b)
+      show(a + b)
       return
-    case "-": show(a - b)
+    case "-":
+      calc.result = (a - b)
+      show(a - b)
       return
-    case "*": show(a * b)
+    case "*":
+      calc.result = (a * b)
+      show(a * b)
       return
     case "/": (b !== 0) ? show(a / b) : ` ${del()} ${key(".display > span").innerText = 'деление на ноль невозможно'}`
-      return
+    calc.result = (a / b)
+    return
   }
 }
 
