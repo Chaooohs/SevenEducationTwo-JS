@@ -17,8 +17,6 @@ const calc = {
   memory: "",
 };
 
-// const num = /\d/;
-// const sign = /[+-/*]/;
 const key = (selector) => document.querySelector(selector);
 
 key(".keys").addEventListener("click", function (e) {
@@ -26,9 +24,11 @@ key(".keys").addEventListener("click", function (e) {
   if (/\d/.test(e.target.value) && calc.sign === "") {
     calc.numOne += e.target.value;
     show(calc.numOne);
-  } else if (/[+-/*]/.test(e.target.value)) {
+  }
+  else if (/[+-/*]/.test(e.target.value)) {
     calc.sign += e.target.value;
-  } else if (/\d/.test(e.target.value)) {
+  }
+  else if (/\d/.test(e.target.value)) {
     calc.numTwo += e.target.value;
     show(calc.numTwo);
     key("#eq").removeAttribute("disabled");
@@ -48,12 +48,7 @@ key(".keys").addEventListener("click", function (e) {
       spanShow(e.target.value);
       break;
     case "C":
-      calc.sign = ""
-      calc.numOne = ""
-      calc.numTwo = ""
-      calc.result = ""
-      show("");
-      spanShow("");
+      del()
       break;
     case "=":
       calculate(parseFloat(calc.numOne), parseFloat(calc.numTwo), calc.sign)
@@ -76,20 +71,29 @@ const memoryShow = () => key(".display > input").value = calc.memory;
 
 const spanShow = (m) => (key(".display > span").innerText = m);
 
+function del() {
+  calc.sign = ""
+  calc.numOne = ""
+  calc.numTwo = ""
+  calc.result = ""
+  show("");
+  spanShow("");
+}
 
 // operations ___________________________________________
 function calculate(a, b, c) {
 
   switch (c) {
     case "+": show(a + b)
-      return 
+      return
     case "-": show(a - b)
-      return 
+      return
     case "*": show(a * b)
       return
-    case "/": show(a / b)
+    case "/": (b !== 0) ? show(a / b) : ` ${del()} ${key(".display > span").innerText = 'деление на ноль невозможно'}`
       return
   }
 }
 
+// output ____
 const show = (view) => (key(".display > input").value = view);
