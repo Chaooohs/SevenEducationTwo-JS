@@ -12,8 +12,13 @@ body {
   left: 40%;
 }
 
+span {
+  margin-left: 6px;
+}
+
 .display {
-  background-color: #222;
+  /* background-color: #222; */
+  background-color: #bccd95;
   width: 225px;
   position: relative;
   left: 15px;
@@ -23,12 +28,13 @@ body {
 
 .display input {
   width: 220px;
-  position: relative;
-  left: 2px;
-  top: 2px;
+  position: absolute;
+  left: 0;
+  top: 0;
   height: 35px;
   color: black;
-  background-color: #bccd95;
+  background-color: transparent;
+  /* background-color: #bccd95; */
   font-size: 21px;
   text-align: right;
 }
