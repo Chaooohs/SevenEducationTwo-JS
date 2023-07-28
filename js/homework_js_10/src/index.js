@@ -84,7 +84,7 @@ key(".keys").addEventListener("click", function (e) {
   showSpan('')
 
   if (numbers.includes(e.target.value)) {
-    if (calc.numTwo === '' && calc.sign === '') {
+    if (calc.numTwo === '' && calc.sign === '' || calc.numOne === '' && calc.numTwo === '' && calc.memory !== '') {
       calc.numOne += e.target.value;
       show(calc.numOne);
       console.log(calc)
