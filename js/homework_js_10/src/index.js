@@ -9,99 +9,123 @@
 
 //============================================================================================
 
+// essential_____________________________________________
+
 const calc = {
   numOne: "",
   numTwo: "",
   sign: "",
-  result: "",
   memory: "",
 };
 
 const key = (selector) => document.querySelector(selector);
+const numbers = ["0", '1', '2', '3', '4', '5', '6', '7', '8', '9', "."]
+const signs = ['+', '-', '*', '/']
 
 // operations ___________________________________________
 
 function calculate(a, b, c) {
 
   switch (c) {
-    case "+": calc.result = (a + b)
+    case "+": calc.numOne = (a + b)
       return
-    case "-": calc.result = (a - b)
+    case "-": calc.numOne = (a - b)
       return
-    case "*": calc.result = (a * b)
+    case "*": calc.numOne = (a * b)
       return
-    case "/": (b !== 0) ? calc.result = (a / b) : ` ${del()} ${key(".display > span").innerText = 'деление на ноль невозможно'}`
+    case "/": (b !== 0) ? calc.numOne = (a / b) : `${del()} ${showSpan('деление на ноль невозможно')}`
       return
   }
 }
-
 
 // memory ____________________________________________________
 
 const memoryRec = () => {
   calc.memory = +key(".display > input").value;
   key(".display > input").value = "";
+
+  if (calc.numOne !== '' && calc.numTwo !== '') { }
+  else if (calc.memory !== '') calc.numOne = ''
+  console.log(calc)
 };
 
 const memoryDel = () => {
   calc.memory = "";
   key(".display > input").value = "";
+  console.log(calc)
 };
 
-const memoryShow = () => key(".display > input").value = calc.memory;
+const memoryShow = () => {
+  if (calc.numOne === '' && calc.numTwo === '') calc.numOne = calc.memory
+  else if (calc.numOne !== '' && calc.numTwo === '') calc.numTwo = calc.memory
 
-function del() {
+  key(".display > input").value = calc.memory;
+  console.log(calc)
+}
+
+function clearAll() {
   calc.sign = ""
   calc.numOne = ""
   calc.numTwo = ""
-  calc.result = ""
+  calc.memory = ""
   show("");
-  spanShow("");
+  showSpan("");
 }
-
 
 // output ___________________________________________________________________________
 
-const spanShow = (m) => (key(".display > span").innerText = m);
+const showSpan = (m) => (key(".display > span").innerText = m);
 const show = (view) => (key(".display > input").value = view);
-
 
 // click ___________________________________________________________________________
 
 key(".keys").addEventListener("click", function (e) {
 
-  if (/\d/.test(e.target.value) && calc.sign === "") {
-    calc.numOne += e.target.value;
-    show(calc.numOne);
+  showSpan('')
+
+  if (numbers.includes(e.target.value)) {
+    if (calc.numTwo === '' && calc.sign === '') {
+      calc.numOne += e.target.value;
+      show(calc.numOne);
+      console.log(calc)
+    }
+    else if (calc.numOne !== '' && calc.numTwo !== '') {
+      calc.numTwo += e.target.value;
+      show(calc.numTwo);
+      console.log(calc)
+    }
+    else {
+      calc.numTwo += e.target.value;
+      show(calc.numTwo);
+      key("#eq").removeAttribute("disabled");
+      console.log(calc)
+    }
   }
-  else if (/[+-/*]/.test(e.target.value)) {
-    calc.sign = e.target.value;
-  }
-  else if (/\d/.test(e.target.value)) {
-    calc.numTwo += e.target.value;
-    show(calc.numTwo);
-    key("#eq").removeAttribute("disabled");
-  }
+
+  if (signs.includes(e.target.value)) calc.sign = e.target.value;
 
   switch (e.target.value) {
     case "m+":
       memoryRec();
-      spanShow(e.target.value);
+      showSpan(e.target.value);
       break;
     case "m-":
       memoryDel();
-      spanShow(e.target.value);
+      showSpan(e.target.value);
       break;
     case "mrc":
       memoryShow();
-      spanShow(e.target.value);
+      showSpan(e.target.value);
       break;
     case "C":
-      del()
+      clearAll()
+      console.log(calc)
       break;
     case "=":
       calculate(+calc.numOne, +calc.numTwo, calc.sign)
-      show(calc.result)
+      show(calc.numOne)
+      calc.numTwo = ''
+      console.log(calc)
       break;
   }
 });
