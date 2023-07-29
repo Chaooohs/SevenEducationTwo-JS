@@ -19,8 +19,8 @@ const calc = {
 };
 
 const key = (selector) => document.querySelector(selector);
-const numbers = ["0", '1', '2', '3', '4', '5', '6', '7', '8', '9', "."]
 const signs = ['+', '-', '*', '/']
+
 
 // operations ___________________________________________
 
@@ -33,7 +33,7 @@ function calculate(a, b, c) {
       return
     case "*": calc.numOne = (a * b)
       return
-    case "/": (b !== 0) ? calc.numOne = (a / b) : `${del()} ${showSpan('деление на ноль невозможно')}`
+    case "/": (b !== 0) ? calc.numOne = (a / b) : `${clearAll()} ${showSpan('деление на ноль невозможно')}`
       return
   }
 }
@@ -72,60 +72,75 @@ function clearAll() {
   showSpan("");
 }
 
+// validation __________________________________________________________________
+
+const validation = (pattern, value) => pattern.test(value)
+
 // output ___________________________________________________________________________
 
 const showSpan = (m) => (key(".display > span").innerText = m);
 const show = (view) => (key(".display > input").value = view);
 
-// click ___________________________________________________________________________
+// distribution ___________________________________________________________________________
 
-key(".keys").addEventListener("click", function (e) {
+function cheking(symbol) {
 
   showSpan('')
 
-  if (numbers.includes(e.target.value)) {
+  if (validation(/[0-9.]/, symbol)) {
     if (calc.numTwo === '' && calc.sign === '' || calc.numOne === '' && calc.numTwo === '' && calc.memory !== '') {
-      calc.numOne += e.target.value;
+      calc.numOne += symbol;
       show(calc.numOne);
       console.log(calc)
     }
     else if (calc.numOne !== '' && calc.numTwo !== '') {
-      calc.numTwo += e.target.value;
+      calc.numTwo += symbol;
       show(calc.numTwo);
       console.log(calc)
     }
     else {
-      calc.numTwo += e.target.value;
+      calc.numTwo += symbol;
       show(calc.numTwo);
       key("#eq").removeAttribute("disabled");
       console.log(calc)
     }
   }
 
-  if (signs.includes(e.target.value)) calc.sign = e.target.value;
+  if (signs.includes(symbol)) calc.sign = symbol;
 
-  switch (e.target.value) {
+  if (symbol === '=' || symbol === 'Enter') {
+    calculate(+calc.numOne, +calc.numTwo, calc.sign)
+    show(calc.numOne)
+    calc.numTwo = ''
+    console.log(calc)
+  }
+
+  if (symbol === 'C' || symbol === 'Delete') {
+    clearAll()
+    console.log(calc)
+  }
+
+  switch (symbol) {
     case "m+":
       memoryRec();
-      showSpan(e.target.value);
+      showSpan(symbol);
       break;
     case "m-":
       memoryDel();
-      showSpan(e.target.value);
+      showSpan(symbol);
       break;
     case "mrc":
       memoryShow();
-      showSpan(e.target.value);
-      break;
-    case "C":
-      clearAll()
-      console.log(calc)
-      break;
-    case "=":
-      calculate(+calc.numOne, +calc.numTwo, calc.sign)
-      show(calc.numOne)
-      calc.numTwo = ''
-      console.log(calc)
+      showSpan(symbol);
       break;
   }
-});
+};
+
+// click ______________________________________________________________
+
+
+key(".keys").addEventListener("click", (e) => cheking(e.target.value))
+key("body").addEventListener("keydown", (e) => {cheking(e.key); e.preventDefault();})
+
+
+
